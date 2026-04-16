@@ -143,6 +143,23 @@ if file:
         toplam = result_df["Maliyet (TL)"].sum()
         st.markdown(f"## 💰 Toplam Maliyet: {toplam:,.2f} TL")
 
+import io
+
+# Excel'e çevir
+output = io.BytesIO()
+with pd.ExcelWriter(output, engine='openpyxl') as writer:
+    result_df.to_excel(writer, index=False, sheet_name='Satinalma')
+
+excel_data = output.getvalue()
+
+# İndir butonu
+st.download_button(
+    label="📥 Excel olarak indir",
+    data=excel_data,
+    file_name="satinalma_raporu.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
+
 # ===== ADMIN PANEL =====
 if users[user]["role"] == "admin":
     st.sidebar.markdown("---")
