@@ -85,20 +85,22 @@ if st.sidebar.button("Çıkış Yap"):
     st.rerun()
 
 # ===== TRIAL SYSTEM =====
-trial_start = datetime.strptime(users[user]["trial_start"], "%Y-%m-%d")
-today = datetime.now()
+if users[user]["role"] != "admin":
 
-days_passed = (today - trial_start).days
-remaining_days = 7 - days_passed
+    trial_start = datetime.strptime(users[user]["trial_start"], "%Y-%m-%d")
+    today = datetime.now()
 
-if remaining_days <= 0 and users[user]["subscription"] != "active":
-    st.error("❌ Deneme süreniz doldu. Lütfen ödeme yapınız.")
-    st.stop()
-else:
-    st.info(f"⏳ Deneme süresi: {remaining_days} gün kaldı")
+    days_passed = (today - trial_start).days
+    remaining_days = 7 - days_passed
 
-    if remaining_days <= 2:
-        st.warning("⚠️ Deneme süreniz bitmek üzere!")
+    if remaining_days <= 0 and users[user]["subscription"] != "active":
+        st.error("❌ Deneme süreniz doldu. Lütfen ödeme yapınız.")
+        st.stop()
+    else:
+        st.info(f"⏳ Deneme süresi: {remaining_days} gün kaldı")
+
+        if remaining_days <= 2:
+            st.warning("⚠️ Deneme süreniz bitmek üzere!")
 
 # ===== ANA SİSTEM =====
 st.title("📦 AI Satınalma Asistanı")
