@@ -170,3 +170,14 @@ if users[user]["role"] == "admin":
 
     for u in users:
         st.sidebar.write(f"- {u} ({users[u]['subscription']})")
+
+if st.sidebar.button("Kullanıcı Sil"):
+    if target_user in users:
+        del users[target_user]
+        save_users(users)
+        st.sidebar.success("Kullanıcı silindi")
+    else:
+        st.sidebar.error("Kullanıcı bulunamadı")
+
+if target_user == "admin":
+    st.sidebar.error("Admin silinemez")
