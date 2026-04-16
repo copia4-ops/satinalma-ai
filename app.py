@@ -157,6 +157,14 @@ if users[user]["role"] == "admin":
             st.sidebar.success("Kullanıcı aktif edildi")
         else:
             st.sidebar.error("Kullanıcı bulunamadı")
+if st.sidebar.button("Pasif Et"):
+    if target_user in users:
+        users[target_user]["subscription"] = "inactive"
+        save_users(users)
+        st.sidebar.success("Kullanıcı pasif edildi")
+    else:
+        st.sidebar.error("Kullanıcı bulunamadı")
+
 if users[user]["role"] == "admin":
     st.sidebar.markdown("### 👥 Kullanıcılar")
 
