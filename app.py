@@ -143,8 +143,6 @@ if file:
         toplam = result_df["Maliyet (TL)"].sum()
         st.markdown(f"## 💰 Toplam Maliyet: {toplam:,.2f} TL")
 
-import io
-
 # Excel'e çevir
 output = io.BytesIO()
 with pd.ExcelWriter(output, engine='openpyxl') as writer:
