@@ -1,3 +1,10 @@
 {
-    "admin": {"password": "admin123", "role": "admin"}
+  "admin": {
+    "password": "admin123",
+    "role": "admin",
+    "email": "admin@mail.com",
+    "company": "Admin",
+    "subscription": "active",
+    "trial_start": "2026-04-16"
+  }
 }
