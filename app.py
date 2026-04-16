@@ -137,24 +137,27 @@ if file:
 
         result_df = pd.DataFrame(results)
 
-        st.success("✅ Satın alma önerisi hazır")
-        st.dataframe(result_df, use_container_width=True)
+st.success("✅ Satın alma önerisi hazır")
+st.dataframe(result_df, use_container_width=True)
 
-        toplam = result_df["Maliyet (TL)"].sum()
-        st.markdown(f"## 💰 Toplam Maliyet: {toplam:,.2f} TL")
+toplam = result_df["Maliyet (TL)"].sum()
+st.markdown(f"## 💰 Toplam Maliyet: {toplam:,.2f} TL")
 
-# Excel'e çevir
+# ===== EXCEL İNDİR =====
+import io
+
 output = io.BytesIO()
 with pd.ExcelWriter(output, engine='openpyxl') as writer:
     result_df.to_excel(writer, index=False, sheet_name='Satinalma')
 
 excel_data = output.getvalue()
 
-# İndir butonu
+file_name = f"{users[user]['company']}_satinalma_{datetime.now().date()}.xlsx"
+
 st.download_button(
     label="📥 Excel olarak indir",
     data=excel_data,
-    file_name="satinalma_raporu.xlsx",
+    file_name=file_name,
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 )
 
