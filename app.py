@@ -198,6 +198,6 @@ if users[user]["role"] == "admin":
     st.sidebar.markdown("### 👥 Kullanıcılar")
 
     for u in users:
-    st.sidebar.write(
-        f"{u} | {users[u]['company']} | {users[u]['email']} | {users[u]['subscription']}"
-    )
+        st.sidebar.write(
+            f"{u} | {users[u]['company']} | {users[u]['email']} | {users[u]['subscription']}"
+        )
