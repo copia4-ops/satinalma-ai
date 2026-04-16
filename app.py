@@ -157,3 +157,7 @@ if users[user]["role"] == "admin":
             st.sidebar.success("Kullanıcı aktif edildi")
         else:
             st.sidebar.error("Kullanıcı bulunamadı")
+st.sidebar.markdown("### 👥 Kullanıcılar")
+
+for u in users:
+    st.sidebar.write(f"- {u} ({users[u]['subscription']})")
